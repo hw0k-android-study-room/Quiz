@@ -28,6 +28,7 @@ public class QuestionDBHelper extends SQLiteOpenHelper {
                 "  question TEXT," +
                 "  score INTEGER," +
                 "  answer INTEGER," +
+                "  type INTEGER," +
                 "  choice1 TEXT," +
                 "  choice2 TEXT," +
                 "  choice3 TEXT," +
@@ -54,6 +55,7 @@ public class QuestionDBHelper extends SQLiteOpenHelper {
             choices[i - 1] = cursor.getString(cursor.getColumnIndex("choice" + i));
         }
         question.setChoices(choices);
+        question.setType(cursor.getInt(cursor.getColumnIndex("type")));
 
         return question;
     }
@@ -64,6 +66,7 @@ public class QuestionDBHelper extends SQLiteOpenHelper {
         values.put("question", question.getQuestion());
         values.put("score", question.getScore());
         values.put("answer", question.getAnswer());
+        values.put("type", question.getType());
 
         for (int i = 0; i < question.getChoices().length; i++) {
             int idx = i + 1;
@@ -106,6 +109,7 @@ public class QuestionDBHelper extends SQLiteOpenHelper {
         values.put("question", question.getQuestion());
         values.put("score", question.getScore());
         values.put("answer", question.getAnswer());
+        values.put("type", question.getType());
 
         for (int i = 0; i < question.getChoices().length; i++) {
             int idx = i + 1;
